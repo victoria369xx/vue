@@ -17,9 +17,9 @@
               <button  v-for="btn in numberBtns" :key="btn" :value="btn" @click="getBtnValue">{{btn}}</button>
               <button @click="del"> del </button>
                     <div>
-                  <input type="radio" id="one">
+                  <input type="radio" id="one" value="operand1" v-model="pickedOperand" >
                   <label for="one">Операнд 1</label>
-                  <input type="radio" id="two">
+                  <input type="radio" id="two" value="operand2" v-model="pickedOperand">
                   <label for="two">Операнд 2</label>
                 </div>
           </div>
@@ -45,8 +45,8 @@ export default {
   data(){
        return {
           operations: ['+', '-', '/', '*'],
-           operand1: '',
-           operand2: '',
+           operand1: ``,
+           operand2: ``,
            result: 0,
            error: '',
            logs: {},
@@ -54,7 +54,9 @@ export default {
              checked: true,
              message: 'Отобразить экранную клавиатуру'
            },
-           numberBtns: [1,2,3,4,5,6,7,8,9,0]
+           numberBtns: [1,2,3,4,5,6,7,8,9,0],
+           pickedOperand: '',
+          
        }
    },
    methods: {
@@ -101,7 +103,11 @@ export default {
      },
      getBtnValue () {
        let value = event.target.value
-       console.log(value)
+        if (this.pickedOperand == 'operand1') {
+          this.operand1 = value
+        } else {
+          this.operand2 = value
+        }
      },
      del (){
        console.log('im future button!')
