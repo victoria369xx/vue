@@ -17,9 +17,9 @@
               <button  v-for="btn in numberBtns" :key="btn" :value="btn" @click="getBtnInput">{{btn}}</button>
               <button @click="del"> del </button>
                     <div>
-                  <input type="radio" id="one" value='operand1'  v-model="pickedOperand" @click="switchOperand" >
+                  <input type="radio" id="one" value='operand1'  v-model="pickedOperand"  >
                   <label for="one">Операнд 1</label>
-                  <input type="radio" id="two" value='operand2' v-model="pickedOperand" @click="switchOperand" >
+                  <input type="radio" id="two" value='operand2' v-model="pickedOperand" >
                   <label for="two">Операнд 2</label>
                 </div>
           </div>
@@ -101,21 +101,10 @@ export default {
       }
       this.$set(this.logs, key, value)
      },
-     switchOperand (){
-       if (event.target.value == "operand1"){
-        event.targe.value = '';
-        this.pickedOperand =  this.operand1
-        console.log('operand1')
-        
-      } else {
-         event.targe.value = '';
-        this.pickedOperand =  this.operand2
-        console.log('operand2')
-      }
-     },
+
     getBtnInput (){
       let value = event.target.value;
-      if (this.pickedOperand == ''){
+      if (this.pickedOperand == ``){
         this.pickedOperand = value
       } else {
         this.pickedOperand = +`${this.pickedOperand}${value}`
