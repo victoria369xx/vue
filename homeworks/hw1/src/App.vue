@@ -3,7 +3,7 @@
   <h1> Калькулятор </h1>
   <div>
      <div class="display">
-       <input type="number"  v-model.number="operand1"/>
+       <input type="number"  v-model.number="operand1" />
        <input type="number"  v-model.number="operand2"/>
      </div>
      <div class="keyboard">
@@ -14,12 +14,12 @@
           <input type="checkbox" id="checkbox" v-model="numbersKeyboard.checked">
           <label for="checkbox">{{ numbersKeyboard.message}}</label>
           <div class="inputBtns" v-show="numbersKeyboard.checked">
-              <button  v-for="btn in numberBtns" :key="btn" :value="btn" @click="getBtnInput">{{btn}}</button>
+              <button  v-for="btn in numberBtns" :key="btn.number"  @click="getBtnInput(btn.number)">{{btn.number}}</button>
               <button @click="del"> del </button>
                     <div>
-                  <input type="radio" id="one" value='operand1'  v-model="pickedOperand"  >
+                  <input type="radio" id="one" value='operand1'  v-model="pickedOperand" @click="changeOperand('operand1')" >
                   <label for="one">Операнд 1</label>
-                  <input type="radio" id="two" value='operand2' v-model="pickedOperand" >
+                  <input type="radio" id="two" value='operand2' v-model="pickedOperand"  @click="changeOperand('operand2')">
                   <label for="two">Операнд 2</label>
                 </div>
           </div>
@@ -54,8 +54,19 @@ export default {
              checked: true,
              message: 'Отобразить экранную клавиатуру'
            },
-           numberBtns: [1,2,3,4,5,6,7,8,9,0],
-           pickedOperand: '',
+           numberBtns: [
+               { number: 1 },
+               { number: 2 },
+               { number: 3 },
+               { number: 4 },
+               { number: 5 },
+               { number: 6 },
+               { number: 7 },
+               { number: 8 },
+               { number: 9 },
+               { number: 0 }
+           ],
+           pickedOperand: 0,
           
        }
    },
@@ -102,18 +113,23 @@ export default {
       this.$set(this.logs, key, value)
      },
 
-    getBtnInput (){
-      let value = event.target.value;
-      if (this.pickedOperand == ``){
-        this.pickedOperand = value
-      } else {
-        this.pickedOperand = +`${this.pickedOperand}${value}`
-      }
-      console.log (this.pickedOperand)
+      changeOperand(operand) {
+      this.pickedOperand = operand;
+    },
+    getBtnInput (number){
+      if (this[this.pickedOperand] === 0) {
+        this[this.pickedOperand] = number;
+      } else
+        this[this.pickedOperand] = +`${this[this.pickedOperand]}${number}`;
      },
 
      del (){
-       console.log('im future button!')
+        let newArr = this[this.pickedOperand]
+        .toString()
+        .split("")
+        .slice(0, -1)
+        .join("");
+      this[this.pickedOperand] = `${newArr}`;
      }
 
    }
