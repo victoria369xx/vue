@@ -1,6 +1,10 @@
 <template>
-  <div id="app">
-
+  <div id="app" :class="[$style.app]">
+  <header :class="[$style.header]"> My personal costs </header>
+  <main>
+  <PaymentForm/>
+  <PaymentsList :items="paymentsList"/>
+  </main>
   </div>
 </template>
 
@@ -11,7 +15,23 @@ export default {
   name: 'App',
   data(){
        return {
-          
+          paymentsList: [
+            {
+              date:'21.11.2021',
+              category: 'Education',
+              price: 450
+            },
+            {
+              date:'22.10.2021',
+              category: 'Internet',
+              price: 300
+            },
+            {
+              date:'01.11.2021',
+              category: 'Food',
+              price: 120
+            }
+            ]
        }
    },
    methods: {
@@ -20,14 +40,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" module>
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
 }
-
+.header {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
 </style>
