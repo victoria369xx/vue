@@ -2,7 +2,7 @@
   <div id="app" :class="[$style.app]">
   <header :class="[$style.header]"> My personal costs </header>
   <main>
-  <PaymentForm/>
+  <PaymentForm @addToList="onDataAdded"/>
   <PaymentsList :items="paymentsList"/>
   </main>
   </div>
@@ -10,9 +10,14 @@
 
 <script>
 
-
+import PaymentsList from './components/PaymentsList.vue'
+import PaymentForm from './components/PaymentForm.vue'
 export default {
   name: 'App',
+  components: {
+  PaymentsList,
+  PaymentForm
+},
   data(){
        return {
           paymentsList: [
@@ -35,7 +40,9 @@ export default {
        }
    },
    methods: {
-     
+     onDataAdded (data) {
+       this.paymentsList.push(data)
+     }
    }
 }
 </script>
