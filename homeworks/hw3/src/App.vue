@@ -6,7 +6,7 @@
       <button @click="display">Add new cost +</button>
   <PaymentForm @addToList="onDataAdded" v-show="show"/>
     </div>
-  <PaymentsList @pageSelected="switchPage" :items="paymentsList"/>
+  <PaymentsList :items="paymentsList"/>
   <Pagination :pages="paymentsListLength"/>
   </main>
   </div>
@@ -62,7 +62,6 @@ export default {
             }
             ],
             paymentsListLength: 0,
-            filteredPaymentsList:[]
        }
    },
    methods: {
@@ -72,23 +71,12 @@ export default {
      display () {
        this.show = !this.show
      },
-     switchPage (n){
-       if (n == 1) {
-           this.filteredPaymentsList = this.paymentsList.filter((obj)=>{
-             return obj.id <=3
-           }) }
-           if (n == 2) {
-           this.filteredPaymentsList = this.paymentsList.filter((obj)=>{
-             return obj.id >3
-           })
-       }
-  
    },
    mounted () {
      this.paymentsListLength = Math.ceil(this.paymentsList.length/3)
    }
    }
-}
+
 </script>
 
 <style lang="scss" scoped>

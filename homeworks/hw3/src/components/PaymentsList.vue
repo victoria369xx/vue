@@ -25,16 +25,18 @@ export default {
     margin-top: 20px;
 }
 .list-flex{
-      width: 400px;
-     display: flex;
-     justify-content: space-between;
+    display: grid;
+    width:400px;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
 }
 .list-header {
-    width: 400px;
-     display: flex;
-     justify-content: space-between;
+    display: grid;
+    width:400px;
+    grid-template-columns: 1fr 1fr 1fr;
      text-align: center;
      font-weight: bold;
+     margin-bottom: 20px;
 }
 .list-item {
     margin-bottom: 10px;

@@ -1,7 +1,7 @@
 <template>
     <div class="pagination">
     <button> Prev </button>
-    <button v-for="(n, index) in pages" :key="index" @click="selectPage"> {{n}} </button>
+    <button v-for="(n, index) in pages" :key="index"> {{n}} </button>
     <button> Next </button>  
     </div>
 </template>
@@ -10,17 +10,7 @@ export default {
       props: {
           pages: Number
           },
-    data () {
-        return {
-            activePage: 1,
-        }
-    },
-    methods: {
-        selectPage(n){
-            this.$emit('pageSelected', n)
-        }
-    }
-    }
+}
 
 </script>
 
