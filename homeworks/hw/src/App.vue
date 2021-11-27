@@ -28,39 +28,7 @@ export default {
   data(){
        return {
          show:false,
-          paymentsList: [
-            { id: 1,
-              date:'2021-11-25',
-              category: 'Education',
-              price: 450
-            },
-            { id: 2,
-              date:'2021-11-22',
-              category: 'Internet',
-              price: 300
-            },
-            { id: 3,
-              date:'2021-11-21',
-              category: 'Food',
-              price: 120
-            },
-               {
-              id: 4,
-              date:'2021-11-20',
-              category: 'Education',
-              price: 450
-            },
-            {id: 5,
-              date:'2021-11-22',
-              category: 'Internet',
-              price: 300
-            },
-            { id: 6,
-              date:'2021-11-22',
-              category: 'Food',
-              price: 120
-            }
-            ],
+          paymentsList: [],
             paymentsListLength: 0,
        }
    },
