@@ -5,7 +5,7 @@
             <div> Category </div>
             <div> Price </div>
         </div>
-        <div class="list-flex" v-for="(item, index) in items" :key="index">
+        <div class="list-flex" v-for="(item, index) in getPaymentsList" :key="index">
         <div class="list-item"> {{item.date}}</div>
         <div class="list-item"> {{item.category}}</div>
         <div class="list-item"> {{item.price}}</div>
@@ -14,9 +14,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    props: {
-        items: Array
+    computed: {
+        ...mapGetters([
+            'getPaymentsList'
+        ])
     }
 }
 </script>

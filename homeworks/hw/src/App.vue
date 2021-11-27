@@ -6,8 +6,8 @@
       <button @click="display">Add new cost +</button>
   <PaymentForm @addToList="onDataAdded" v-show="show"/>
     </div>
-  <PaymentsList :items="paymentsList"/>
-  <Pagination :pages="paymentsListLength"/>
+  <PaymentsList/>
+  <Pagination/>
   </main>
   </div>
 </template>
@@ -17,6 +17,7 @@
 import PaymentsList from './components/PaymentsList.vue'
 import PaymentForm from './components/PaymentForm.vue'
 import Pagination from './components/Pagination.vue'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'App',
@@ -28,11 +29,12 @@ export default {
   data(){
        return {
          show:false,
-          paymentsList: [],
-            paymentsListLength: 0,
        }
    },
    methods: {
+     ...mapActions([
+       'fetchData'
+     ]),
      onDataAdded (data) {
        this.paymentsList.push(data)
      },
@@ -41,7 +43,7 @@ export default {
      },
    },
    mounted () {
-     this.paymentsListLength = Math.ceil(this.paymentsList.length/3)
+     this.fetchData()
    }
    }
 
