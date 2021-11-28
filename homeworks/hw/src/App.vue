@@ -4,7 +4,7 @@
   <main>
     <div>
       <button @click="display">Add new cost +</button>
-  <PaymentForm @addToList="onDataAdded" v-show="show"/>
+  <PaymentForm v-show="show"/>
     </div>
   <PaymentsList/>
   <Pagination/>
@@ -35,9 +35,7 @@ export default {
      ...mapActions([
        'fetchData'
      ]),
-     onDataAdded (data) {
-       this.paymentsList.push(data)
-     },
+     
      display () {
        this.show = !this.show
      },
