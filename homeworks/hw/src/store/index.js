@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         paymentsList: [],
-        newDataFromForm: {
+        newFormData: {
             date: '',
             category: '',
             price: 0
@@ -17,13 +17,14 @@ export default new Vuex.Store({
         setPaymentsListData (state, payload) {
             state.paymentsList = payload
         },
-        setNewDataOnPaymentsList (state, payload) {
-            state.newDataFromForm = payload
+        setFormData (state, payload) {
+            state.newFormData = payload
+            
         }
     },
     getters: {
         getPaymentsList: state => state.paymentsList,
-        getNewDataOnList: state => state.newDataFromForm
+
 
     },
     actions: {
@@ -75,8 +76,6 @@ export default new Vuex.Store({
                 }
            )
         },
-        saveNewData({commit}){
-            commit('setNewDataOnPaymentsList', 'getNewDataOnList')
-        }
+
     }
 })

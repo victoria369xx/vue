@@ -1,33 +1,33 @@
 <template>
     <div class="form-flex">
-        <input type="date" placeholder="Date" v-model="getNewDataOnList.date">
-        <select v-model="getNewDataOnList.category"> 
-            <option value="Food">Food</option>
-            <option value="Education">Education</option>
-            <option value="Transport">Transport</option>
-        </select>
-        <input placeholder="Price" v-model.number="getNewDataOnList.price">
-        <button @click="save"> Save </button>
+        <input type="date" placeholder="Date"  >
+         <input placeholder="Category" >
+        <input placeholder="Price">
+        <button @click="setFormData"> Save </button>
         </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+  import { mapMutations} from 'vuex'
 export default {
-  
     methods: {
-        ...mapGetters([
-            'getNewDataOnList'
-        ]),
         ...mapMutations([
-            'setNewDataOnPaymentsList'
+            'setFormData'
         ]),
-        save () {
-            const {date, category, price} = this
-            this.$emit('addToList', {date, category, price})
-             this.date = this.category = this.price = ''
-        },
-    },
+
+    getInput(){
+        let userInput = {
+            userDate: '2021/11/11',
+            userCategory: 'fod',
+            userPrice: 0
+        }
+          return userInput
+         },
+     setFormData(){
+        this.setFormData(this.getInput())
+        
+    }
+}
 }
 </script>
 
