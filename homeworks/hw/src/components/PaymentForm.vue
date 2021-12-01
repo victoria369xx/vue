@@ -1,44 +1,51 @@
 <template>
-    <div class="form-flex">
-        <input type="date" placeholder="Date"  >
-         <input placeholder="Category" >
-        <input placeholder="Price">
-        <button @click="setFormData"> Save </button>
-        </div>
+  <div class="form-flex">
+    <input type="date" placeholder="Date" v-model="date" />
+    <input placeholder="Category" v-model="category" />
+    <input placeholder="Price" v-model.number="price" />
+    <button @click="setNewDataToList">Save</button>
+  </div>
 </template>
 
 <script>
-  import { mapMutations} from 'vuex'
+import { mapGetters, mapMutations } from "vuex";
 export default {
-    methods: {
-        ...mapMutations([
-            'setFormData'
-        ]),
+  data() {
+    return {
+      date: "",
+      category: "",
+      price: 0,
+    };
+  },
+  methods: {
+    ...mapMutations(["setFormData", "addFormDataToList"]),
+    ...mapGetters(['getFormDataToList']),
 
-    getInput(){
-        let userInput = {
-            userDate: '2021/11/11',
-            userCategory: 'fod',
-            userPrice: 0
-        }
-          return userInput
-         },
-     setFormData(){
-        this.setFormData(this.getInput())
-        
+    getInput() {
+      return {
+        date: this.date,
+        category: this.category,
+        price: this.price,
+      };
+    },
+    setNewData() {
+      this.setFormData(this.getInput());
+    },
+    setNewDataToList(){
+       this.setNewData()
+       this.addFormDataToList(this.getFormDataToList.value) // payload дает ошибку mappedGetters
     }
-}
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-    .form-flex {
-        display: flex;
-        flex-direction: column;
-        width: 200px;
-    }
-    button {
-        width: 100px;
-    }
-    
+.form-flex {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+button {
+  width: 100px;
+}
 </style>

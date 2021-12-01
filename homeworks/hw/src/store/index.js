@@ -19,12 +19,16 @@ export default new Vuex.Store({
         },
         setFormData (state, payload) {
             state.newFormData = payload
-            
+        },
+        addFormDataToList( state, payload) {
+            state.paymentsList.push(payload)
         }
     },
     getters: {
         getPaymentsList: state => state.paymentsList,
-
+        getFormDataToList: state => {
+            return state.newFormData
+        } 
 
     },
     actions: {
@@ -64,7 +68,7 @@ export default new Vuex.Store({
                          price: 120
                        }
                        ])
-                },1000)
+                },300)
                 setTimeout(() => reject(new Error("some error occured")), 2000);
             })
             .then(
