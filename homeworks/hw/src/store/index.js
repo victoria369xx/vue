@@ -32,7 +32,10 @@ export default new Vuex.Store({
 
     },
     actions: {
-        
-
+        async fetchData({commit}){
+            const response = await fetch( 'https://raw.githubusercontent.com/victoria369xx/paymentsAPI/payments.json')
+            const paymentsList = response.json()
+            commit('setPaymentsListData', paymentsList)
+        }
     }
 })
