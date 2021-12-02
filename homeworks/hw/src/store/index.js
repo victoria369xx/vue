@@ -32,10 +32,33 @@ export default new Vuex.Store({
 
     },
     actions: {
-        async fetchData({commit}){
-            const response = await fetch( 'https://raw.githubusercontent.com/victoria369xx/paymentsAPI/payments.json')
-            const paymentsList = response.json()
-            commit('setPaymentsListData', paymentsList)
-        }
+        fetchData({ commit }) {
+            return new Promise ((resolve,reject)=>{
+                setTimeout(()=> {
+                    resolve({
+                       page1: [
+                        {id:1, date: "2021/11/21", category:"Food", price: 300},
+                        {id:2, date: "2021/10/10", category:"Internet", price: 230},
+                        {id:3, date: "2021/11/01", category:"Food", price: 234}
+                       ],
+                       page2: [
+                        {id:1, date: "2021/11/21", category:"Food", price: 300},
+                        {id:2, date: "2021/10/10", category:"Internet", price: 230},
+                        {id:3, date: "2021/11/01", category:"Food", price: 234}
+                       ]
+                    })
+                },300)
+                setTimeout(() => reject(new Error("some error occured")), 2000);
+            })
+            .then(
+                res => {
+                commit('setPaymentsListData', res)
+                },
+                error => {
+                    console.log('Error', error)
+                }
+           )
+        },
+
     }
 })

@@ -5,10 +5,8 @@
             <div> Category </div>
             <div> Price </div>
         </div>
-        <div class="list-flex" v-for="item in getPaymentsList" :key="item.id">
-        <div class="list-item"> {{item.date}}</div>
-        <div class="list-item"> {{item.category}}</div>
-        <div class="list-item"> {{item.price}}</div>
+        <div class="list-flex" v-for="(value, name) in getPaymentsList" :key="name">
+            <div>{{name}} {{value}}</div>
         </div>
     </div>
 </template>
