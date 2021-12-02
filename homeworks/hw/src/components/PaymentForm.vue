@@ -33,7 +33,12 @@ export default {
     },
     setNewDataToList(){
        this.setNewData()
-       this.addFormDataToList(this.getFormDataToList.value) // payload дает ошибку mappedGetters
+         this.addFormDataToList(this.getFormData())
+    }
+  },
+  computed: {
+    getFormData() {
+      return this.getFormDataToList
     }
   }
 };

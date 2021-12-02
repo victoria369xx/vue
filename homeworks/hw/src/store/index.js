@@ -32,54 +32,7 @@ export default new Vuex.Store({
 
     },
     actions: {
-        fetchData({ commit }) {
-            return new Promise ((resolve,reject)=>{
-                setTimeout(()=> {
-                    resolve([
-                        { 
-                         date:'2021-11-25',
-                         category: 'Education',
-                         price: 450
-                       },
-                       { 
-                         date:'2021-11-22',
-                         category: 'Internet',
-                         price: 300
-                       },
-                       { 
-                         date:'2021-11-21',
-                         category: 'Food',
-                         price: 120
-                       },
-                          {
-                         
-                         date:'2021-11-20',
-                         category: 'Education',
-                         price: 450
-                       },
-                       {
-                         date:'2021-11-22',
-                         category: 'Internet',
-                         price: 300
-                       },
-                       { 
-                         date:'2021-11-22',
-                         category: 'Food',
-                         price: 120
-                       }
-                       ])
-                },300)
-                setTimeout(() => reject(new Error("some error occured")), 2000);
-            })
-            .then(
-                res => {
-                commit('setPaymentsListData', res)
-                },
-                error => {
-                    console.log('Error', error)
-                }
-           )
-        },
+        
 
     }
 })
