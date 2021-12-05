@@ -1,15 +1,18 @@
 <template>
     <div class="pagination">
     <button> Prev </button>
-    <button v-for="(n, index) in pages" :key="index"> {{n}} </button>
+    <button > btn </button>
     <button> Next </button>  
     </div>
 </template>
 <script>
+import {mapGetters} from 'vuex';
 export default {
-      props: {
-          pages: Number
-          },
+      methods:{
+          ...mapGetters ([
+              'getPaymentsList'
+          ]),
+      },
 }
 
 </script>
