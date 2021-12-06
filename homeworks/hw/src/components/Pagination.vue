@@ -1,19 +1,26 @@
 <template>
     <div class="pagination">
-    <button> Prev </button>
-    <button > btn </button>
-    <button> Next </button>  
+    <button v-for="(value, name) in getPaymentsList" :key="name" @click="selectPage(name)"> {{name}} </button>
     </div>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 export default {
-      methods:{
+      computed:{
           ...mapGetters ([
               'getPaymentsList'
           ]),
       },
-}
+      methods: {
+          ...mapMutations([
+              'setCurrentPage'
+          ]),
+
+          selectPage(n) {
+            this.setCurrentPage(n)
+          }
+      }
+      }
 
 </script>
 

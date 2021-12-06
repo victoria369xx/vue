@@ -17,7 +17,7 @@
 import PaymentsList from './components/PaymentsList.vue'
 import PaymentForm from './components/PaymentForm.vue'
 import Pagination from './components/Pagination.vue'
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'App',
@@ -31,11 +31,16 @@ export default {
          show:false,
        }
    },
+     computed: {
+       ...mapGetters([
+         'getCurrentPage'
+       ])
+     },
    methods: {
      ...mapActions([
        'fetchData'
      ]),
-     
+
      display () {
        this.show = !this.show
      },

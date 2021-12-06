@@ -6,7 +6,7 @@
             <div> Price </div>
         </div>
         <div class="list-flex" v-for="(value, name) in getPaymentsList" :key="name">
-            <div>{{name}} {{value}}</div>
+            <div>{{value}}</div>
         </div>
     </div>
 </template>
