@@ -1,27 +1,26 @@
 <template>
     <div class="pagination">
-    <button v-for="(value, name) in getPaymentsList" :key="name" @click="selectPage(name)"> {{name}} </button>
+    <button v-for="i in amount" :key="i" @click="onClick(i)"> {{i}} </button>
     </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+
 export default {
-      computed:{
-          ...mapGetters ([
-              'getPaymentsList'
-          ]),
-      },
-      methods: {
-          ...mapMutations([
-              'setCurrentPage'
-          ]),
-
-          selectPage(n) {
-            this.setCurrentPage(n)
-          }
-      }
-      }
-
+    props: {
+        length: Number,
+        n: Number
+    },
+    computed: {
+        amount () {
+            return Math.ceil(this.length / this.n)
+        }
+    },
+    methods: {
+        onClick (p) {
+            this.$emit('paginate', p)
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -7,7 +7,6 @@
   <PaymentForm v-show="show"/>
     </div>
   <PaymentsList/>
-  <Pagination/>
   </main>
   </div>
 </template>
@@ -16,15 +15,13 @@
 
 import PaymentsList from './components/PaymentsList.vue'
 import PaymentForm from './components/PaymentForm.vue'
-import Pagination from './components/Pagination.vue'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'App',
   components: {
   PaymentsList,
-  PaymentForm,
-  Pagination
+  PaymentForm
 },
   data(){
        return {

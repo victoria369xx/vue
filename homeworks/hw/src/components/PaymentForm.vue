@@ -33,7 +33,10 @@ export default {
     },
     setNewDataToList(){
        this.setNewData()
-         this.addFormDataToList(this.getFormData())
+         this.addFormDataToList(this.getFormData());
+          this.date = "",
+          this.category = "",
+          this.price = 0
     }
   },
   computed: {

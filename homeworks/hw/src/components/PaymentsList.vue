@@ -5,19 +5,41 @@
             <div> Category </div>
             <div> Price </div>
         </div>
-        <div class="list-flex" v-for="(value, name) in getPaymentsList" :key="name">
-            <div>{{value}}</div>
+        <div class="list-flex" v-for="(item, index) in currentElements" :key="index">
+            <div>{{item.date}}</div>
+            <div>{{item.category}}</div>
+            <div>{{item.price}}</div>
         </div>
+        <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
     </div>
 </template>
 
 <script>
+import Pagination from './Pagination.vue'
 import { mapGetters } from 'vuex'
 export default {
+    components: {
+        Pagination
+    },
+    data() {
+        return {
+            page: 1,
+            n: 5,
+        }
+    },
     computed: {
         ...mapGetters([
             'getPaymentsList'
-        ])
+        ]),
+        currentElements() {
+            const {n, page} =  this
+            return  this.getPaymentsList.slice(n * (page - 1), n * (page - 1) + n )
+        }
+    },
+    methods: {
+        onPaginate (p){
+            this.page = p
+        }
     }
 }
 </script>
