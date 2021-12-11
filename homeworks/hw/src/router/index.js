@@ -16,8 +16,13 @@ export default new Router ({
             component: PageDashboard
         },
         {
-            path: '/dashboard/add/payment/:category',
-            name: 'dashboard',
+            path: '/dashboard/add/payment/Education',
+            name: 'addEducation',
+            component: PageDashboard
+        },
+        {
+            path: '/dashboard/add/payment/Food',
+            name: 'addFood',
             component: PageDashboard
         },
         {

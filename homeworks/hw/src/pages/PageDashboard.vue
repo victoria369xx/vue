@@ -5,7 +5,6 @@
   <PaymentForm v-show="show"/>
     </div>
   <PaymentsList/>
-  <router-link to="/dashboard/add/payment/:category"> Add Education Amount 200 </router-link>
     </div>
 </template>
 
