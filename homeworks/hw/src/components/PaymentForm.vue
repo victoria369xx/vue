@@ -1,13 +1,28 @@
 <template>
 <div>
   <div class="form-flex">
-    <input type="text" placeholder="Date" v-model="date" />
-    <input placeholder="Category" v-model="category" />
-    <input placeholder="Price" v-model.number="price" />
+    <p v-if="errors.length">
+       <ul>
+      <li v-for="error in errors" :key="error">{{ error }}</li>
+    </ul>
+    </p>
+    <input type="date" placeholder="Date" v-model="date" />
+    <input placeholder="Category" class="category" v-model="category" />
+    <input placeholder="Price" v-model.number="price"  />
     <button @click="setNewDataToList">Save</button>
   </div>
-  <router-link to="/dashboard/add/payment/Education?price=200"> Add Category Education with Price 200 </router-link>
-  <router-link to="/dashboard/add/payment/Food?price=140"> Add Category Food with Price 140 </router-link>
+  <h4> Frequently used payments: </h4>
+  <div class="link-wrapper">
+    <div @click="addFastPayment">
+      <router-link to="/dashboard/add/payment/Education?price=200" class="link"> Add Category Education with Price 200 </router-link>
+    </div>
+    <div @click="addFastPayment">
+      <router-link to="/dashboard/add/payment/Food?price=140" class="link"> Add Category Food with Price 140 </router-link>
+    </div>
+    <div @click="addFastPayment">
+      <router-link  to="/dashboard/add/payment/Internet?price=860" class="link"> Add Category Internet with Price 860 </router-link>
+    </div>
+  </div>
   </div> 
 </template>
 
@@ -19,6 +34,7 @@ export default {
       date: "",
       category: "",
       price: 0,
+      errors: []
     };
   },
   methods: {
@@ -36,7 +52,7 @@ export default {
       this.setFormData(this.getInput());
     },
     setNewDataToList(){
-       this.setNewData()
+        this.setNewData()
          this.addFormDataToList(this.getFormData());
           this.date = "",
           this.category = "",
@@ -48,17 +64,20 @@ export default {
       const m = currentDate.getMonth() + 1;
       const y = currentDate.getFullYear();
       return `${y}/${m}/${d}`;
+    },
+    addFastPayment(){
+      const data = {
+        date: this.getDateNow(),
+        category : this.$route.path.split('/').pop(),
+        price : +this.$route.query.price
+      }
+      this.addFormDataToList(data)
     }
   },
   computed: {
     getFormData() {
       return this.getFormDataToList
     }
-  },
-  mounted() {
-    this.date = this.getDateNow()
-    this.category = this.$route.path.split('/').pop()
-    this.price = +this.$route.query.price
   }
 };
 </script>
@@ -71,5 +90,19 @@ export default {
 }
 button {
   width: 100px;
+}
+.category {
+text-transform: capitalize;
+}
+.link-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.link {
+  text-decoration: none;
+  color:black;
+}
+.link:hover {
+  color: green
 }
 </style>

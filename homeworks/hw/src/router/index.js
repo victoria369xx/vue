@@ -26,6 +26,11 @@ export default new Router ({
             component: PageDashboard
         },
         {
+            path: '/dashboard/add/payment/Internet',
+            name: 'addInternet',
+            component: PageDashboard
+        },
+        {
             path: '/about',
             name: 'about',
             component: PageAbout
