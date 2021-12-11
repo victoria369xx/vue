@@ -2,26 +2,24 @@
   <div id="app" class="app">
   <header class="header"> My personal costs </header>
   <main>
-    <div>
-      <button @click="display">Add new cost +</button>
-  <PaymentForm v-show="show"/>
-    </div>
-  <PaymentsList/>
+  <PageDashboard/>
+  <PageAbout/>
+  <Page404/>
   </main>
   </div>
 </template>
 
 <script>
 
-import PaymentsList from './components/PaymentsList.vue'
-import PaymentForm from './components/PaymentForm.vue'
 import {mapActions, mapGetters} from 'vuex'
+import {PageDashboard, PageAbout, Page404} from './components/pages'
 
 export default {
   name: 'App',
   components: {
-  PaymentsList,
-  PaymentForm
+  PageDashboard,
+  PageAbout,
+  Page404
 },
   data(){
        return {
