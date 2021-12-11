@@ -1,48 +1,22 @@
 <template>
   <div id="app" class="app">
   <header class="header"> My personal costs </header>
+  <div class="page-links">
+  <router-link class="link" to="/dashboard"> Dashboard </router-link>
+  <router-link class="link" to="/about"> About </router-link>  
+  <router-link class="link" to="/404"> 404 </router-link>
+  </div>
   <main>
-  <PageDashboard/>
-  <PageAbout/>
-  <Page404/>
+ <router-view/>
   </main>
   </div>
 </template>
 
 <script>
 
-import {mapActions, mapGetters} from 'vuex'
-import {PageDashboard, PageAbout, Page404} from './components/pages'
-
 export default {
   name: 'App',
-  components: {
-  PageDashboard,
-  PageAbout,
-  Page404
-},
-  data(){
-       return {
-         show:false,
-       }
-   },
-     computed: {
-       ...mapGetters([
-         'getCurrentPage'
-       ])
-     },
-   methods: {
-     ...mapActions([
-       'fetchData'
-     ]),
 
-     display () {
-       this.show = !this.show
-     },
-   },
-   mounted () {
-     this.fetchData()
-   }
    }
 
 </script>
@@ -60,4 +34,18 @@ main {
   font-size: 30px;
   font-weight: bold;
 }
+.page-links {
+  margin-top: 20px;
+}
+.link {
+  margin-right: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+}
+.link:hover {
+ border-bottom: 2px solid black;
+}
+
 </style>
