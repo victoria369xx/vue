@@ -1,5 +1,10 @@
 <template>
   <div id="app" class="app">
+
+      <transition name="fade">
+      <Modal v-if="modalShown" :name="modalShown"/>
+    </transition>
+
   <header class="header"> My personal costs </header>
   <div class="page-links">
   <router-link class="link" to="/dashboard"> Dashboard </router-link>
@@ -16,10 +21,41 @@
 
 export default {
   name: 'App',
-
-   }
+   components: {
+    Modal: () => import('./components/modalWindows/Modal.vue')
+  },
+  data () {
+    return {
+      modalShown: false
+    }
+  },
+  methods: {
+    onShown ({ name }) {
+      this.modalShown = name
+    },
+    onClose () {
+      this.modalShown = ''
+    }
+  },
+  mounted () {
+    this.$modal.EventBus.$on('show', this.onShown)
+    this.$modal.EventBus.$on('close', this.onClose)
+  },
+  beforeDestroy () {
+    this.$modal.EventBus.$off('show', this.onShown)
+    this.$modal.EventBus.$off('close', this.onClose)
+  }
+}
 
 </script>
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 <style lang="scss" scoped>
 main {

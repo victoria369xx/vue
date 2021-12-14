@@ -40,7 +40,10 @@ export default {
         onPaginate (p){
             this.page = p
         }
-    }
+},
+            mounted(){
+                this.$modal.show('PaymentForm')
+            }
 }
 </script>
 <style lang="scss" scoped>

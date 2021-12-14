@@ -13,6 +13,7 @@ import {mapActions, mapGetters} from 'vuex'
 import PaymentForm from '../components/PaymentForm.vue'
 import PaymentsList from '../components/PaymentsList.vue'
 
+
 export default {
     components: {
         PaymentForm,
