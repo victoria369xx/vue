@@ -11,6 +11,7 @@
             <div>{{item.price}}</div>
         </div>
         <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
+        <button @click="showForm">Show Form</button>
     </div>
 </template>
 
@@ -39,11 +40,12 @@ export default {
     methods: {
         onPaginate (p){
             this.page = p
+        },
+        showForm() {
+            this.$modal.show('PaymentForm')
         }
 },
-            mounted(){
-                this.$modal.show('PaymentForm')
-            }
+
 }
 </script>
 <style lang="scss" scoped>

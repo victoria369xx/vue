@@ -1,55 +1,41 @@
 <template>
-  <div :class="[$style.wrapper]">
-    <div :class="[$style.overlay]"></div>
-    <div :class="[$style.content]">
-      <header>Name</header>
-      <PaymentForm v-if="name === 'PaymentForm'" />
-      <button @click="onClose">Close</button>
-    </div>
+  <div class="wrapper" v-if="shown">
+    <div class="overlay"></div>
+    <header> {{shown}} </header>
+    <PaymentForm v-if="shown === 'PaymentForm'" />
+    <button @click="onClose">Close</button>
   </div>
 </template>
 
 <script>
-import PaymentForm from '../PaymentForm'
+import PaymentForm from '../PaymentForm.vue'
+
 export default {
   components: {
-    PaymentForm
+      PaymentForm
   },
-  props: {
-    name: String
-  },
-  methods: {
-    onClose () {
-      this.$modal.close()
-    },
-    open(){
-        console.log('working')
+  data () {
+    return {
+      shown: ''
     }
   },
-  mounted (){
-      this.$modal.EventBus.$on('show', this.open())
+  methods: {
+    onShow ({name}) {
+      this.shown = name
+    },
+    onClose(){
+      this.shown = ''
+    }
+  },
+  mounted () {
+    this.$modal.EventBus.$on('show', this.onShow)
   }
 }
+
 </script>
 
-<style module lang="scss">
+<style lang="scss" scoped>
 .wrapper {
   border: 1px solid red;
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  .overlay {
-    z-index: 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(50,50,50,0.5);
-  }
-  .content {
-    position: relative;
-    z-index: 100;
-  }
 }
 </style>

@@ -2,7 +2,8 @@
     <div>
     <div>
       <button @click="display">Add new cost +</button>
-  <PaymentForm v-show="show"/>
+  <!-- <PaymentForm v-show="show"/> -->
+   <Modal v-if="ModalFlag" modal="PaymentForm" />
     </div>
   <PaymentsList/>
     </div>
@@ -10,18 +11,20 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import PaymentForm from '../components/PaymentForm.vue'
+//import PaymentForm from '../components/PaymentForm.vue'
 import PaymentsList from '../components/PaymentsList.vue'
+import Modal from '../components/modalWindows/Modal.vue'
 
 
 export default {
     components: {
-        PaymentForm,
-        PaymentsList
+       // PaymentForm,
+        PaymentsList,
+        Modal
     },
      data(){
        return {
-         show:false,
+         ModalFlag:false,
        }
    },
    computed: {
@@ -35,7 +38,7 @@ export default {
      ]),
 
      display () {
-       this.show = !this.show
+       this.ModalFlag = true
      },
    },
    mounted () {
