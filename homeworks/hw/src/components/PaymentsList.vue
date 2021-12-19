@@ -12,6 +12,7 @@
         </div>
         <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
         <button @click="showForm">Show Form</button>
+        <button @click="closeForm">Close Form</button>
     </div>
 </template>
 
@@ -43,6 +44,9 @@ export default {
         },
         showForm() {
             this.$modal.show('PaymentForm')
+        },
+        closeForm () {
+            this.$modal.close()
         }
 },
 

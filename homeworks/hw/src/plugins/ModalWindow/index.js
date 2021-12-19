@@ -10,10 +10,10 @@ export default {
                 EventBus: new Vue(),
 
             show(name) {
-                this.EventBus.$emit('show', { name })
+                this.EventBus.$emit('show',  name)
             },
             close() {
-                console.log('close')
+                this.EventBus.$emit('close')
             }
         }
     }

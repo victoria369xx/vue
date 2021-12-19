@@ -3,9 +3,6 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import PageDashboard from '../pages/PageDashboard.vue'
-import PageAbout from '../pages/PageAbout.vue'
-import Page404 from '../pages/Page404.vue'
 
 export default new Router ({
     mode: 'history',
@@ -13,32 +10,32 @@ export default new Router ({
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: PageDashboard
+            component: ()=> import('../pages/PageDashboard.vue')
         },
         {
             path: '/dashboard/add/payment/Education',
             name: 'addEducation',
-            component: PageDashboard
+            component: ()=> import('../pages/PageDashboard.vue')
         },
         {
             path: '/dashboard/add/payment/Food',
             name: 'addFood',
-            component: PageDashboard
+            component: ()=> import('../pages/PageDashboard.vue')
         },
         {
             path: '/dashboard/add/payment/Internet',
             name: 'addInternet',
-            component: PageDashboard
+            component: ()=> import('../pages/PageDashboard.vue')
         },
         {
             path: '/about',
             name: 'about',
-            component: PageAbout
+            component: ()=> import('../pages/PageAbout.vue')
         },
         {
             path: '*',
             name: 'NotFound',
-            component: Page404
+            component: () => import ('../pages/Page404.vue')
         }
     ]
 })

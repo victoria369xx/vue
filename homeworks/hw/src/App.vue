@@ -10,7 +10,9 @@
   <main>
  <router-view/>
   </main>
-  <Modal />
+  <transition name="fade">
+  <Modal v-if="modalShown" :name="modalShown" />
+  </transition>
   </div>
 </template>
 
@@ -23,15 +25,38 @@ export default {
   },
   data () {
     return {
-      
+      modalShown: false
+    }
+  },
+  methods: {
+    onShown (name) {
+      this.modalShown = name
+    },
+    onClose() {
+      this.modalShown = ''
     }
   },
 
-
+  mounted () {
+    this.$modal.EventBus.$on('show', this.onShown)
+    this.$modal.EventBus.$on('close', this.onClose)
+  },
+  beforeDestroy () {
+    this.$modal.EventBus.$off('show', this.onShown)
+    this.$modal.EventBus.$off('close', this.onClose)
+  }
 }
 
 </script>
 
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 <style lang="scss" scoped>
 main {
