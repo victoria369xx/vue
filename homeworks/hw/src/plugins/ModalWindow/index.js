@@ -14,6 +14,9 @@ export default {
             },
             close() {
                 this.EventBus.$emit('close')
+            },
+            display (e) {
+                this.EventBus.$emit('display', e)
             }
         }
     }

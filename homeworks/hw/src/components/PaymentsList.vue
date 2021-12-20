@@ -9,6 +9,10 @@
             <div>{{item.date}}</div>
             <div>{{item.category}}</div>
             <div>{{item.price}}</div>
+            <div> <button @click="onDisplay(event)"> M </button> </div>
+            <transition name="fade">
+             <ContextMenu  v-if="menuShown" :name="menuShown"/>
+            </transition>
         </div>
         <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
         <button @click="showForm">Show Form</button>
@@ -17,16 +21,19 @@
 </template>
 
 <script>
+import ContextMenu from './modalWindows/ContextMenu.vue'
 import Pagination from './Pagination.vue'
 import { mapGetters } from 'vuex'
 export default {
     components: {
-        Pagination
+        Pagination,
+        ContextMenu
     },
     data() {
         return {
             page: 1,
             n: 5,
+            menuShown: true
         }
     },
     computed: {
@@ -58,14 +65,14 @@ export default {
 }
 .list-flex{
     display: grid;
-    width:400px;
-    grid-template-columns: 1fr 1fr 1fr;
+    width:500px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
 }
 .list-header {
     display: grid;
-    width:400px;
-    grid-template-columns: 1fr 1fr 1fr;
+    width:500px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
      text-align: center;
      font-weight: bold;
      margin-bottom: 20px;
