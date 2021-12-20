@@ -9,22 +9,27 @@
             <div>{{item.date}}</div>
             <div>{{item.category}}</div>
             <div>{{item.price}}</div>
+            <div><button  @click="displayMenu">Menu</button></div>
+            <ContextMenu v-if="displayed" />
         </div>
         <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
     </div>
 </template>
 
 <script>
+import ContextMenu from './ContextMenu.vue'
 import Pagination from './Pagination.vue'
 import { mapGetters } from 'vuex'
 export default {
     components: {
-        Pagination
+        Pagination,
+        ContextMenu
     },
     data() {
         return {
             page: 1,
             n: 5,
+            displayed: false
         }
     },
     computed: {
@@ -39,6 +44,10 @@ export default {
     methods: {
         onPaginate (p){
             this.page = p
+        },
+        displayMenu(){
+            this.$context.show()
+            this.displayed = true
         }
     }
 }
@@ -50,13 +59,13 @@ export default {
 .list-flex{
     display: grid;
     width:400px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
 }
 .list-header {
     display: grid;
     width:400px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
      text-align: center;
      font-weight: bold;
      margin-bottom: 20px;
