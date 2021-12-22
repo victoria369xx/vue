@@ -9,21 +9,18 @@
             <div>{{item.date}}</div>
             <div>{{item.category}}</div>
             <div>{{item.price}}</div>
-            <div><button  @click="displayMenu">Menu</button></div>
-            <ContextMenu v-if="displayed" />
+            <span @click="onContextMenuClick($event, item.id)">...</span>
         </div>
         <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
     </div>
 </template>
 
 <script>
-import ContextMenu from './ContextMenu.vue'
 import Pagination from './Pagination.vue'
 import { mapGetters } from 'vuex'
 export default {
     components: {
-        Pagination,
-        ContextMenu
+        Pagination
     },
     data() {
         return {
@@ -45,9 +42,12 @@ export default {
         onPaginate (p){
             this.page = p
         },
-        displayMenu(){
-            this.$context.show()
-            this.displayed = true
+        onContextMenuClick(event, id){
+            const items = [
+                {text: 'Edit', action: ()=> {console.log('edit', id)}},
+                {text: 'Delete', action: ()=> {console.log('delete', id)}}
+            ]
+            this.$context.show({event, items})
         }
     }
 }

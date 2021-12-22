@@ -9,14 +9,17 @@
   <main>
  <router-view/>
   </main>
+  <ContextMenu /> 
   </div>
 </template>
 
 <script>
-
+import ContextMenu from './components/ContextMenu.vue'
 export default {
   name: 'App',
-
+components: {
+  ContextMenu
+}
    }
 
 </script>
