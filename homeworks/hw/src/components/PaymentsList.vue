@@ -47,12 +47,12 @@ export default {
         },
         onContextMenuClick(event, id){
             const items = [
-                {text: 'Edit', action: ()=> {this.$modal.show('PaymentForm', { id })}},
+                {text: 'Edit', action: ()=> {console.log('edit')}}, 
                 {text: 'Delete', action: ()=> { this.deleteItem(id)}}
             ]
             this.$context.show({event, items})
-        }
     }
+}
 }
 </script>
 <style lang="scss" scoped>

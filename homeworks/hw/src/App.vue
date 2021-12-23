@@ -9,9 +9,6 @@
   <main>
  <router-view/>
   </main>
-   <transition name="fade">
-    <Modal v-if="modalShown" :name="modalShown" :settings="modalSettings"/>
-  </transition>
   <ContextMenu /> 
   </div>
 </template>
@@ -21,44 +18,11 @@ import ContextMenu from './components/ContextMenu.vue'
 export default {
   name: 'App',
 components: {
-  ContextMenu,
-  Modal: () => import('./components/Modal.vue')
+  ContextMenu
 },
- data () {
-    return {
-      modalShown: '',
-      modalSettings: {}
-    }
-  },
-  methods: {
-    onShown ({ name, settings }) {
-      this.modalShown = name,
-      this.modalSettings = settings
-    },
-    onClose () {
-      this.modalShown = ''
-    }
-  },
-  mounted () {
-    this.$modal.EventBus.$on('show', this.onShown)
-    this.$modal.EventBus.$on('close', this.onClose)
-  },
-  beforeDestroy () {
-    this.$modal.EventBus.$off('show', this.onShown)
-    this.$modal.EventBus.$off('close', this.onClose)
-  }
    }
 
 </script>
-
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-</style>
 
 <style lang="scss" scoped>
 main {
