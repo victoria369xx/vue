@@ -21,6 +21,7 @@ export default {
     methods: {
         onClick(item){
             item.action()
+            this.onClose()
         },
         onShow({items, caller }){
             this.shown =true

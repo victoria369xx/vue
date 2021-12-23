@@ -29,6 +29,9 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 export default {
+  props: {
+    id : Number
+  },
   data() {
     return {
       date: "",
@@ -74,9 +77,22 @@ export default {
       this.addFormDataToList(data)
     }
   },
+  mounted() {
+    if (this.id) {
+      const item = this.getList.find(p => p.id === p.id)
+      if (item){
+        this.date = item.date
+        this.category = item.category
+        this.price = item.price
+      }
+    }
+  },
   computed: {
     getFormData() {
       return this.getFormDataToList
+    },
+    getList() {
+      return this.getPaymentsList
     }
   }
 };

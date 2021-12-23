@@ -17,7 +17,7 @@
 
 <script>
 import Pagination from './Pagination.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations} from 'vuex'
 export default {
     components: {
         Pagination
@@ -28,7 +28,7 @@ export default {
             n: 5,
             displayed: false
         }
-    },
+    }, 
     computed: {
         ...mapGetters([
             'getPaymentsList'
@@ -39,13 +39,16 @@ export default {
         }
     },
     methods: {
+        ...mapMutations([
+            'deleteItem'
+        ]),
         onPaginate (p){
             this.page = p
         },
         onContextMenuClick(event, id){
             const items = [
-                {text: 'Edit', action: ()=> {console.log('edit', id)}},
-                {text: 'Delete', action: ()=> {console.log('delete', id)}}
+                {text: 'Edit', action: ()=> {this.$modal.show('PaymentForm', { id })}},
+                {text: 'Delete', action: ()=> { this.deleteItem(id)}}
             ]
             this.$context.show({event, items})
         }

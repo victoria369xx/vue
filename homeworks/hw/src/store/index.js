@@ -22,6 +22,9 @@ export default new Vuex.Store({
         },
         addFormDataToList( state, payload) {
             state.paymentsList.push(payload)
+        },
+        deleteItem (state, payload) {
+            state.paymentsList = state.paymentsList.filter(item => item.id !== payload )
         }
     },
     getters: {
