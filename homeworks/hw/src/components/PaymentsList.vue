@@ -9,7 +9,7 @@
             <div>{{item.date}}</div>
             <div>{{item.category}}</div>
             <div>{{item.price}}</div>
-            <span @click="onContextMenuClick($event, item.id)">...</span>
+            <span @click="onContextMenuClick($event, item.id, item)">...</span>
         </div>
         <Pagination :length="getPaymentsList.length" :n="n"  @paginate="onPaginate" />
     </div>
@@ -26,7 +26,6 @@ export default {
         return {
             page: 1,
             n: 5,
-            displayed: false
         }
     }, 
     computed: {
@@ -47,7 +46,9 @@ export default {
         },
         onContextMenuClick(event, id){
             const items = [
-                {text: 'Edit', action: ()=> {console.log('edit')}}, 
+                {text: 'Edit', action:  () => {
+                   this.$context.showForm(id);
+                }}, 
                 {text: 'Delete', action: ()=> { this.deleteItem(id)}}
             ]
             this.$context.show({event, items})

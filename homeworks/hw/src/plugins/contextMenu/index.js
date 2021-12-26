@@ -25,6 +25,9 @@ export default {
 
             close(){
                 this.EventBus.$emit('close')
+            },
+            showForm(id) {
+                this.EventBus.$emit('showFormOnClickEdit', id)
             }
         }
     }

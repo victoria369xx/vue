@@ -29,15 +29,12 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 export default {
-  props: {
-    id : Number
-  },
   data() {
     return {
       date: "",
       category: "",
       price: 0,
-      errors: []
+      errors: [],
     };
   },
   methods: {

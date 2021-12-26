@@ -35,10 +35,15 @@ export default {
 
      display () {
        this.show = !this.show
-     },
+     }, 
+     showForm(id){
+       this.show = true
+       console.log(id)
+     }
    },
    mounted () {
-     this.fetchData()
+     this.fetchData();
+     this.$context.EventBus.$on("showFormOnClickEdit", this.showForm)
    }
    }
     
