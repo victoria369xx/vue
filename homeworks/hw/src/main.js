@@ -4,8 +4,10 @@ import store from './store'
 import router from './router'
 import context from './plugins/contextMenu'
 
+
 Vue.config.productionTip = false
 Vue.use(context)
+
 
 new Vue({
   render: h => h(App),

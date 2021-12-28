@@ -1,10 +1,14 @@
 <template>
+<div>
+    <transition name="fade">
     <div class="wrapper" v-if="shown" :style="styles">
         <div v-for="item in items" 
         :key="item.text"
         @click="onClick(item)">
             {{item.text}}
             </div>
+   </div>
+    </transition>
    </div>
 </template>
 
@@ -15,7 +19,7 @@ export default {
             items: [],
             shown: false,
             xPos : 0,
-            yPos : 0
+            yPos : 0,
         }
     },
     methods: {
@@ -43,7 +47,7 @@ export default {
         styles (){
             return {
                 top: `${this.yPos}px`,
-                left: `${this.xPos}px`
+                left: `${this.xPos+70}px`
             }
         }
     },
@@ -57,6 +61,14 @@ export default {
     }
 }
 </script>
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 <style lang="scss" scoped>
 .wrapper {

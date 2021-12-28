@@ -19,10 +19,22 @@ export default {
   name: 'App',
 components: {
   ContextMenu
+},
+methods : {
+  onShow(item) {
+    this.$context.editForm(item)
+  }
+},
+mounted () {
+     this.$context.EventBus.$on('showForm', this.onShow)
+},
+beforeDestroy (){
+  this.$context.EventBus.$off('showForm', this.onShow)
 }
    }
 
 </script>
+
 
 <style lang="scss" scoped>
 main {

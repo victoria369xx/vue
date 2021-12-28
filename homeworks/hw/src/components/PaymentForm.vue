@@ -1,12 +1,12 @@
 <template>
-<div>
+<div >
   <div class="form-flex">
     <p v-if="errors.length">
        <ul>
       <li v-for="error in errors" :key="error">{{ error }}</li>
     </ul>
     </p>
-    <input type="date" placeholder="Date" v-model="date" />
+    <input placeholder="Date" v-model="date" />
     <input placeholder="Category" class="category" v-model="category" />
     <input placeholder="Price" v-model.number="price"  />
     <button @click="setNewDataToList">Save</button>
@@ -34,11 +34,11 @@ export default {
       date: "",
       category: "",
       price: 0,
-      errors: [],
+      errors: []
     };
   },
   methods: {
-    ...mapMutations(["setFormData", "addFormDataToList"]),
+    ...mapMutations(["setFormData", "addFormDataToList", "deleteItem"]),
     ...mapGetters(['getFormDataToList']),
 
     getInput() {
@@ -72,6 +72,11 @@ export default {
         price : +this.$route.query.price
       }
       this.addFormDataToList(data)
+    },
+    editData(item){
+        this.date = item.date
+        this.category = item.category
+        this.price = item.price
     }
   },
   mounted() {
@@ -83,6 +88,7 @@ export default {
         this.price = item.price
       }
     }
+     this.$context.EventBus.$on('editForm', this.editData)
   },
   computed: {
     getFormData() {

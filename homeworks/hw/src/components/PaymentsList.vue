@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             page: 1,
-            n: 5,
+            n: 5
         }
     }, 
     computed: {
@@ -44,10 +44,11 @@ export default {
         onPaginate (p){
             this.page = p
         },
-        onContextMenuClick(event, id){
+        onContextMenuClick(event, id, item){
             const items = [
                 {text: 'Edit', action:  () => {
-                   this.$context.showForm(id);
+                    this.$context.showForm(item)
+
                 }}, 
                 {text: 'Delete', action: ()=> { this.deleteItem(id)}}
             ]

@@ -35,15 +35,17 @@ export default {
 
      display () {
        this.show = !this.show
-     }, 
-     showForm(id){
+     },
+     showFormFromContext (){
        this.show = true
-       console.log(id)
      }
    },
    mounted () {
      this.fetchData();
-     this.$context.EventBus.$on("showFormOnClickEdit", this.showForm)
+     this.$context.EventBus.$on('editForm', this.showFormFromContext)
+   },
+   beforeDestroy(){
+     this.$context.EventBus.$off('editForm', this.showFormFromContext)
    }
    }
     
